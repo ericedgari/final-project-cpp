@@ -61,6 +61,38 @@ public:
             cout<<head->data<<" ";
             head = head->next;}
         }
+        void swap(Node *a, Node *b){
+    	string temp = a->data;
+    	a->data = b->data;
+    	b->data = temp;
+    	
+	}
+	
+	void sort(){
+		Node *current = get_head();
+		Node *tempNode = new Node;
+		string temp;
+		
+		if(get_head() == NULL){
+			return;
+		}
+		else{
+			while(current != NULL){
+				tempNode = current->next;	
+				while(tempNode != NULL){
+					if(current->data > tempNode->data){
+						swap(current,tempNode);
+					}
+					tempNode =  tempNode->next;
+				}
+				current =  current->next;
+			}
+			
+		}
+		
+		
+		
+	}
              
     };
     
