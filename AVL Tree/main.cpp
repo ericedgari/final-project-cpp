@@ -4,15 +4,56 @@ using namespace std;
 
 int main(){
     AVLTree myTree;
-    string myData[] = {"James", "George", "Rudolph", "Jonathan", "Avian", "Rasko", "Jester"};
-    int myData2[] = {10,40,30,5,50,20,8};
-    
-    for(int i = 0; i < sizeof(myData2)/sizeof(myData2[0]); i++){
-        myTree.insert(myData2[i],myData[i]);
-    }
-    myTree.printPreOrder();
-    myTree.remove(10);
-    myTree.printPreOrder();
-    
+    while(true){
+        cout << "-----------------------" << endl;
+        cout << "        AVL TREE       " << endl;
+        cout << "-----------------------" << endl;
+        cout << "1. Add data" << endl;
+        cout << "2. Delete data" << endl;
+        cout << "3. Search data" << endl;
+        cout << "4. Show data" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Input >> ";
+        int input;
+        cin >> input;
+        switch(input){
+            case 1:
+                while(true){
+                    int number;
+                    cout << "Enter ID: ";
+                    cin >> number;
+                    cin.clear();
+                    if(to_string(number).length() > 9){
+                        cout << "ID cannot be longer than 9 integers" << endl;
+                        continue;
+                    }
+                    string name;
+                    cout << "Enter name: ";
+                    cin.ignore();
+                    getline(cin,name);
+                    myTree.insert(number,name);
+                    break;
+                }
+                break;
+            
+            case 2:
+                cout << "Enter ID to delete: ";
+                int number;
+                cin >> number;
+                myTree.remove(number);
+                break;
+            
+            case 3:
+                break;
+                  
+            case 4:
+                myTree.printPreOrder();
+                break;
+            
+            case 5: 
+                    exit(0);
+            
+        }
+    }   
     return 0;
 }

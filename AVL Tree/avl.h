@@ -5,8 +5,8 @@ using namespace std;
 class AVLTree{
     
     struct Node{
-        string name;
         int number;
+        string name;
         Node* left;
         Node* right;
         int height;
@@ -19,11 +19,6 @@ int getHeight(Node *node){
     if(node == NULL) return 0;
     return node -> height;
 }
-  
-int max(int a, int b){
-    if(a > b) return a;
-    return b;
-}
 
 int getBalance(Node *node){
     return getHeight(node -> left) - getHeight(node -> right);
@@ -31,8 +26,8 @@ int getBalance(Node *node){
 
 Node* createNode(int number, string name){
     Node* temp = new Node();
-    temp -> name = name;
     temp -> number = number;
+    temp -> name = name;
     temp -> left = NULL;
     temp -> right = NULL;
     temp -> height = 1;
@@ -114,12 +109,13 @@ void printPreOrderP(Node* node){
         printPreOrderP(node -> left);
         printPreOrderP(node -> right);
     }
+    else cout << "";
 }
 
 void printInOrderP(Node* node){
     if(node != NULL){
         printInOrderP(node -> left);
-        cout << "Name: " << node -> name  << "\t" << "Number: " << node -> number << endl;
+        cout << node -> number << " ";
         printInOrderP(node -> right);
     }
 }
@@ -128,12 +124,6 @@ Node* getMin(Node* node){
     if(root == NULL) return root;
     else if(node -> left == NULL) return node;
     else getMin(node -> left);
-}
-
-Node* getMax(Node* node){
-    if(root == NULL) return root;
-    else if(node -> right == NULL) return node;
-    else getMax(node -> right);
 }
 
 Node* removeP(Node* node, int number){
@@ -171,37 +161,36 @@ Node* removeP(Node* node, int number){
             }
             free(temp); 
         }
-        
-        if(node == NULL){
-            return node;
-        }
-        
-        updateHeight(node);
-        
-        int balance = getBalance(node);
-        
-        if(balance > 1 && number < node -> left -> number){
-            node = rightRotate(node);
-        }
-        
-        else if(balance < -1 && number > node -> right -> number){
-            node = leftRotate(node);
-        }
-        
-        else if(balance > 1 && number > node -> left -> number){
-            node -> left = leftRotate(node -> left);
-            node = rightRotate(node);
-        }
-        
-        else if(balance < -1 && number < node -> right -> number){
-            node -> right = rightRotate(node -> right);
-            node = leftRotate(node);
-        }
-        
     }
+    if(node == NULL){
+        return node;
+    }
+    
+    updateHeight(node);
+    
+    int balance = getBalance(node);
+    
+    if(balance > 1 && number < node -> left -> number){
+        node = rightRotate(node);
+    }
+    
+    else if(balance < -1 && number > node -> right -> number){
+        node = leftRotate(node);
+    }
+    
+    else if(balance > 1 && number > node -> left -> number){
+        node -> left = leftRotate(node -> left);
+        node = rightRotate(node);
+    }
+    
+    else if(balance < -1 && number < node -> right -> number){
+        node -> right = rightRotate(node -> right);
+        node = leftRotate(node);
+    }
+    
+    
     return node;
 }
-
 
 public:
 AVLTree(){
@@ -221,7 +210,7 @@ void printInOrder(){
 }
 
 void remove(int number){
-    removeP(root, number);
+    root = removeP(root, number);
 }
    
 };
