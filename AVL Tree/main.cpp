@@ -44,6 +44,12 @@ int main(){
                 break;
             
             case 3:
+                cout << "Enter ID to search: ";
+                cin >> number;
+                if(myTree.search(number) != "NAN"){
+                    cout << "The name at the specified ID is " << myTree.search(number) << endl;
+                }
+                else cout << "Specified ID does not exist!" << endl;
                 break;
                   
             case 4:

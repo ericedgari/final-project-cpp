@@ -192,6 +192,22 @@ Node* removeP(Node* node, int number){
     return node;
 }
 
+Node* searchP(Node* node, int number){
+    if(node == NULL){
+        return node;
+    }
+    
+    if(number > node -> number){
+        searchP(node -> right, number);
+    }
+    else if(number < node -> number){
+        searchP(node -> left, number);
+    }
+
+    else{
+        return node;
+    }
+}
 public:
 AVLTree(){
     root = NULL;
@@ -213,4 +229,10 @@ void remove(int number){
     root = removeP(root, number);
 }
    
+string search(int number){
+    if(searchP(root, number) != NULL){
+        return searchP(root, number) -> name;
+    }
+    else return "NAN";
+}
 };
