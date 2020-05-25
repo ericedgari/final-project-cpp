@@ -62,7 +62,7 @@ Node* leftRotate(Node *node){
     return temp1;
 }
 
-Node* insertP(Node* node, int number, int name){
+Node* insertP(Node* node, int number, string name){
     if(node == NULL){
         node = createNode(number, name);
     }
@@ -115,7 +115,7 @@ void printPreOrderP(Node* node){
 void printInOrderP(Node* node){
     if(node != NULL){
         printInOrderP(node -> left);
-        cout << node -> number << " ";
+        cout << "Name: " << node -> name  << "\t" << "Number: " << node -> number << endl;
         printInOrderP(node -> right);
     }
 }
@@ -192,6 +192,23 @@ Node* removeP(Node* node, int number){
     return node;
 }
 
+Node* searchP(Node* node, int number){
+    if(node == NULL){
+        return node;
+    }
+
+    if(number > node -> number){
+        searchP(node -> right, number);
+    }
+    else if(number < node -> number){
+        searchP(node -> left, number);
+    }
+
+    else{
+        return node;
+    }
+}
+
 public:
 AVLTree(){
     root = NULL;
@@ -212,5 +229,12 @@ void printInOrder(){
 void remove(int number){
     root = removeP(root, number);
 }
-   
+
+string search(int number){
+    if(searchP(root, number) != NULL){
+        return searchP(root, number) -> name;
+    }
+    else return "NAN";
+}
+
 };
