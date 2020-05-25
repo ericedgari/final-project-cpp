@@ -3,13 +3,13 @@
 ## any manual changes will be erased      
 ##
 ## Debug
-ProjectName            :=finalproject
+ProjectName            :=finaltest
 ConfigurationName      :=Debug
 WorkspaceConfiguration := $(ConfigurationName)
 WorkspacePath          :=C:/Users/yowen/Documents/C++
-ProjectPath            :=C:/Users/yowen/Documents/C++/finalproject
-IntermediateDirectory  :=../build-$(ConfigurationName)/finalproject
-OutDir                 :=../build-$(ConfigurationName)/finalproject
+ProjectPath            :=C:/Users/yowen/Documents/C++/finaltest
+IntermediateDirectory  :=../build-$(ConfigurationName)/finaltest
+OutDir                 :=../build-$(ConfigurationName)/finaltest
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
@@ -62,7 +62,7 @@ AS       := C:/mingw-w64/mingw64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=../build-$(ConfigurationName)/finalproject/main.cpp$(ObjectSuffix) 
+Objects0=../build-$(ConfigurationName)/finaltest/main.cpp$(ObjectSuffix) 
 
 
 
@@ -74,18 +74,18 @@ Objects=$(Objects0)
 .PHONY: all clean PreBuild PrePreBuild PostBuild MakeIntermediateDirs
 all: MakeIntermediateDirs $(OutputFile)
 
-$(OutputFile): ../build-$(ConfigurationName)/finalproject/.d $(Objects) 
-	@if not exist "..\build-$(ConfigurationName)\finalproject" mkdir "..\build-$(ConfigurationName)\finalproject"
+$(OutputFile): ../build-$(ConfigurationName)/finaltest/.d $(Objects) 
+	@if not exist "..\build-$(ConfigurationName)\finaltest" mkdir "..\build-$(ConfigurationName)\finaltest"
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@if not exist "..\build-$(ConfigurationName)\finalproject" mkdir "..\build-$(ConfigurationName)\finalproject"
+	@if not exist "..\build-$(ConfigurationName)\finaltest" mkdir "..\build-$(ConfigurationName)\finaltest"
 	@if not exist ""..\build-$(ConfigurationName)\bin"" mkdir ""..\build-$(ConfigurationName)\bin""
 
-../build-$(ConfigurationName)/finalproject/.d:
-	@if not exist "..\build-$(ConfigurationName)\finalproject" mkdir "..\build-$(ConfigurationName)\finalproject"
+../build-$(ConfigurationName)/finaltest/.d:
+	@if not exist "..\build-$(ConfigurationName)\finaltest" mkdir "..\build-$(ConfigurationName)\finaltest"
 
 PreBuild:
 
@@ -93,16 +93,16 @@ PreBuild:
 ##
 ## Objects
 ##
-../build-$(ConfigurationName)/finalproject/main.cpp$(ObjectSuffix): main.cpp ../build-$(ConfigurationName)/finalproject/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/yowen/Documents/C++/finalproject/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-../build-$(ConfigurationName)/finalproject/main.cpp$(DependSuffix): main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/finalproject/main.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/finalproject/main.cpp$(DependSuffix) -MM main.cpp
+../build-$(ConfigurationName)/finaltest/main.cpp$(ObjectSuffix): main.cpp ../build-$(ConfigurationName)/finaltest/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/yowen/Documents/C++/finaltest/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/finaltest/main.cpp$(DependSuffix): main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/finaltest/main.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/finaltest/main.cpp$(DependSuffix) -MM main.cpp
 
-../build-$(ConfigurationName)/finalproject/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/finalproject/main.cpp$(PreprocessSuffix) main.cpp
+../build-$(ConfigurationName)/finaltest/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/finaltest/main.cpp$(PreprocessSuffix) main.cpp
 
 
--include ../build-$(ConfigurationName)/finalproject//*$(DependSuffix)
+-include ../build-$(ConfigurationName)/finaltest//*$(DependSuffix)
 ##
 ## Clean
 ##

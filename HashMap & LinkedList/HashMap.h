@@ -15,8 +15,8 @@ public:
         }
         return (sum % tableSize);
     }    
-    void insertItem(string x){
-        l[hashFunction(x)].add_node(x);
+    void insertItem(string x, int id){
+        l[hashFunction(x)].add_node(x,id);
         }
     void results(){
         for(int i=0;i<tableSize;i++){
@@ -25,5 +25,17 @@ public:
             }
         }
     void delete_string(string x){
+        if(l[hashFunction(x)].search(x) == -1){
+            cout << "Name not found" << endl;
+        }
+        else{
+            
         l[hashFunction(x)].delete_node(x);}
+    }
+    
+    int searchName(string x){
+        int index = hashFunction(x);
+        int result = l[index].search(x);
+        return result;
+    }
 };

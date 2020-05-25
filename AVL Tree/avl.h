@@ -62,7 +62,7 @@ Node* leftRotate(Node *node){
     return temp1;
 }
 
-Node* insertP(Node* node, int number, string name){
+Node* insertP(Node* node, int number, int name){
     if(node == NULL){
         node = createNode(number, name);
     }
@@ -192,22 +192,6 @@ Node* removeP(Node* node, int number){
     return node;
 }
 
-Node* searchP(Node* node, int number){
-    if(node == NULL){
-        return node;
-    }
-    
-    if(number > node -> number){
-        searchP(node -> right, number);
-    }
-    else if(number < node -> number){
-        searchP(node -> left, number);
-    }
-
-    else{
-        return node;
-    }
-}
 public:
 AVLTree(){
     root = NULL;
@@ -229,10 +213,4 @@ void remove(int number){
     root = removeP(root, number);
 }
    
-string search(int number){
-    if(searchP(root, number) != NULL){
-        return searchP(root, number) -> name;
-    }
-    else return "NAN";
-}
 };
