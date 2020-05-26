@@ -83,9 +83,11 @@ public:
     }
     void swap(Node *a, Node *b){
         string temp = a->data;
+        int temp2 = a->id;
         a->data = b->data;
         b->data = temp;
-        
+        a->id = b->id;
+        b->id = temp2;
     }
     void sort(){
         Node *current = head;
