@@ -1,7 +1,7 @@
 # Project: Final Project GUI
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.569 on 03/06/20 00:36
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 03/06/20 23:45
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
@@ -36,10 +36,10 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
 
-Objects/MingW/Final\ Project\ GUIApp.o: $(GLOBALDEPS) Final\ Project\ GUIApp.cpp Final\ Project\ GUIApp.h Final\ Project\ GUIFrm.h
+Objects/MingW/Final\ Project\ GUIApp.o: $(GLOBALDEPS) Final\ Project\ GUIApp.cpp Final\ Project\ GUIApp.h Final\ Project\ GUIFrm.h HashMap.h Linked\ List.h avl.h
 	$(CPP) -c "Final Project GUIApp.cpp" -o "Objects/MingW/Final Project GUIApp.o" $(CXXFLAGS)
 
-Objects/MingW/Final\ Project\ GUIFrm.o: $(GLOBALDEPS) Final\ Project\ GUIFrm.cpp addnumber.h HashMap.h Linked\ List.h avl.h Final\ Project\ GUIFrm.h Images/Final_Project_GUIFrm_frmNewForm_XPM.xpm
+Objects/MingW/Final\ Project\ GUIFrm.o: $(GLOBALDEPS) Final\ Project\ GUIFrm.cpp Final\ Project\ GUIFrm.h HashMap.h Linked\ List.h avl.h Images/Final_Project_GUIFrm_frmNewForm_XPM.xpm
 	$(CPP) -c "Final Project GUIFrm.cpp" -o "Objects/MingW/Final Project GUIFrm.o" $(CXXFLAGS)
 
 Objects/MingW/Final_Project_GUI_private.res: Objects/MingW/Final_Project_GUI_private.rc Final\ Project\ GUIApp.rc 

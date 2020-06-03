@@ -1,0 +1,3 @@
+basic :http://wxdsgn.sourceforge.net/?q=node/11
+converter: https://wiki.wxwidgets.org/Converting_everything_to_and_from_wxString#wxString_to_integer_number
+list control : https://docs.wxwidgets.org/trunk/classwx_list_ctrl.html
