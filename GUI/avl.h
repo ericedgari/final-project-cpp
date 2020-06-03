@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class AVLTree{
@@ -14,6 +15,7 @@ class AVLTree{
     
 private:
 Node* root;
+
 
 int getHeight(Node *node){
     if(node == NULL) return 0;
@@ -112,13 +114,18 @@ void printPreOrderP(Node* node){
     else cout << "";
 }
 
-void printInOrderP(Node* node){
+
+
+void updateVectorInOrderP(Node* node){
     if(node != NULL){
-        printInOrderP(node -> left);
-        cout << "Name: " << node -> name  << "\t" << "Number: " << node -> number << endl;
-        printInOrderP(node -> right);
+        updateVectorInOrderP(node -> left);
+        nameList.push_back(node->name);
+        idList.push_back(node->number);
+        updateVectorInOrderP(node->right);
     }
 }
+
+
 
 Node* getMin(Node* node){
     if(root == NULL) return root;
@@ -213,18 +220,34 @@ public:
 AVLTree(){
     root = NULL;
 }
+vector<int> idList;
+vector<string> nameList;
 
 void insert(int number, string name){
     root = insertP(root, number, name);
+    
+    nameList.push_back(name);
+    idList.push_back(number);
 }
 
 void printPreOrder(){
     printPreOrderP(root);
 }
 
-void printInOrder(){
-    printInOrderP(root);
+
+void updateVectorInOrder(){
+    updateVectorInOrderP(root);
 }
+
+    
+
+vector<string> getNameList(){
+    return nameList;
+    }
+    
+vector<int> getIdList(){
+    return idList;
+    }   
 
 void remove(int number){
     root = removeP(root, number);
@@ -235,6 +258,23 @@ string search(int number){
         return searchP(root, number) -> name;
     }
     else return "NAN";
+}
+
+void printVector(vector<int> v){
+    for (int i =0 ; i<v.size();i++){
+        cout<<v[i]<<endl;
+    }
+}
+
+void printVector(vector<string> v){
+        for (int i =0 ; i<v.size();i++){
+            cout<<v[i]<<endl;
+        }
+    }
+
+    void printAll(){
+    printVector(idList);
+    printVector(nameList);
 }
 
 };

@@ -9,6 +9,8 @@
 ///------------------------------------------------------------------
 
 
+#include "HashMap.h"
+#include "avl.h"
 #ifndef __FINAL_PROJECT_GUIFRM_H__
 #define __FINAL_PROJECT_GUIFRM_H__
 
@@ -42,6 +44,8 @@ class Final_Project_GUIFrm : public wxFrame
 {
 	private:
 		DECLARE_EVENT_TABLE();
+	    AVLTree myTree;
+        Hash myHash;
 		
 	public:
 		Final_Project_GUIFrm(wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("Final Project GUI"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = Final_Project_GUIFrm_STYLE);
@@ -50,6 +54,10 @@ class Final_Project_GUIFrm : public wxFrame
 		void TotalClick(wxCommandEvent& event);
 		void WxEdit1Updated(wxCommandEvent& event);
 		void WxListBox1Selected(wxCommandEvent& event);
+		void createDatabase();
+		void updateTree(int id , string name);
+		void updateListBox();
+		
 		
 	private:
 		//Do not add custom control declarations between
@@ -60,7 +68,7 @@ class Final_Project_GUIFrm : public wxFrame
 		wxStaticText *WxStaticText2;
 		wxStaticText *WxStaticText1;
 		wxListCtrl *WxListCtrl1;
-		wxButton *Total;
+		wxButton *Add;
 		wxTextCtrl *WxEdit2;
 		wxTextCtrl *WxEdit1;
 		////GUI Control Declaration End
@@ -77,7 +85,7 @@ class Final_Project_GUIFrm : public wxFrame
 			ID_WXSTATICTEXT2 = 1009,
 			ID_WXSTATICTEXT1 = 1008,
 			ID_WXLISTCTRL1 = 1007,
-			ID_TOTAL = 1004,
+			ID_ADD = 1004,
 			ID_WXEDIT2 = 1002,
 			ID_WXEDIT1 = 1001,
 			////GUI Enum Control ID End

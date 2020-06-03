@@ -239,12 +239,12 @@ object frmNewForm: TfrmNewForm
     Wx_Floating_X_Pos = 0
     Wx_Floating_Y_Pos = 0
   end
-  object Total: TWxButton
+  object Add: TWxButton
     Left = 236
     Top = 50
     Width = 75
     Height = 25
-    Caption = 'Total'
+    Caption = 'Add'
     TabOrder = 2
     EVT_BUTTON = 'TotalClick'
     Wx_BKColor = clBlack
@@ -258,7 +258,7 @@ object frmNewForm: TfrmNewForm
     Wx_FGColor = clBlack
     Wx_GeneralStyle = []
     Wx_Hidden = False
-    Wx_IDName = 'ID_TOTAL'
+    Wx_IDName = 'ID_ADD'
     Wx_IDValue = 1004
     Wx_PaneCaption = 'WxButton1'
     Wx_PaneName = 'WxButton1_Pane'

@@ -8,12 +8,11 @@
 ///
 ///------------------------------------------------------------------
 
-#include "addnumber.h"
-#include "HashMap.h"
-#include "avl.h"
-#include <iostream>
+
 
 #include "Final Project GUIFrm.h"
+#include<iostream>
+using namespace std;
 
 //Do not add custom headers between
 //Header Include Start and Header Include End
@@ -34,7 +33,7 @@ BEGIN_EVENT_TABLE(Final_Project_GUIFrm,wxFrame)
 	
 	EVT_CLOSE(Final_Project_GUIFrm::OnClose)
 	EVT_ACTIVATE(Final_Project_GUIFrm::Final_Project_GUIFrmActivate)
-	EVT_BUTTON(ID_TOTAL,Final_Project_GUIFrm::TotalClick)
+	EVT_BUTTON(ID_ADD,Final_Project_GUIFrm::TotalClick)
 	
 	EVT_TEXT(ID_WXEDIT1,Final_Project_GUIFrm::WxEdit1Updated)
 END_EVENT_TABLE()
@@ -47,20 +46,8 @@ Final_Project_GUIFrm::Final_Project_GUIFrm(wxWindow *parent, wxWindowID id, cons
 : wxFrame(parent, id, title, position, size, style)
 {
 	CreateGUIControls();
-	int n1,n2,sum;
 	
-    //USING ALL THE IMPORTED
-  
 	
-	//DISPLAYING THE FIRST ITEM 
-	n1 = wxAtoi(WxEdit1->GetValue());
-    n2 = wxAtoi(WxEdit2->GetValue());
-    sum = addFunction(n1,n2);
-    
-   
-    
-    WxListCtrl1->InsertItem(1,WxEdit1->GetValue());
-    WxListCtrl1->InsertItem(1,WxEdit2->GetValue());
 }
 
 Final_Project_GUIFrm::~Final_Project_GUIFrm()
@@ -85,7 +72,7 @@ void Final_Project_GUIFrm::CreateGUIControls()
 	WxListCtrl1->InsertColumn(0, _("ID"), wxLIST_FORMAT_LEFT, 100);
 	WxListCtrl1->InsertColumn(1, _("Name"), wxLIST_FORMAT_LEFT, 100);
 
-	Total = new wxButton(this, ID_TOTAL, _("Total"), wxPoint(236, 50), wxSize(75, 25), 0, wxDefaultValidator, _("Total"));
+	Add = new wxButton(this, ID_ADD, _("Add"), wxPoint(236, 50), wxSize(75, 25), 0, wxDefaultValidator, _("Add"));
 
 	WxEdit2 = new wxTextCtrl(this, ID_WXEDIT2, _("6"), wxPoint(75, 82), wxSize(121, 19), 0, wxDefaultValidator, _("WxEdit2"));
 
@@ -109,7 +96,7 @@ void Final_Project_GUIFrm::OnClose(wxCloseEvent& event)
  */
 void Final_Project_GUIFrm::Final_Project_GUIFrmActivate(wxActivateEvent& event)
 {
-	// insert your code here
+    
 }
 
 /*
@@ -118,37 +105,16 @@ void Final_Project_GUIFrm::Final_Project_GUIFrmActivate(wxActivateEvent& event)
 void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
 {
 	// insert your code here
-	AVLTree myTree;
-    Hash myHash;
-	 
-    std::string name = std::string(WxEdit1->GetValue().mb_str());
-	int id =wxAtoi(WxEdit2->GetValue());
-	std::string stlstring = "Hello world";
-// assuming your string is encoded as the current locale encoding (wxConvLibc)
-    wxString mystring(stlstring);
-    int myint = 89;
-    wxString thestring;
-    thestring << myint;
-    
-    
-    
-    myTree.insert(id,name);
-    myHash.insertItem(name,id);
-    
-   
-   // THE LOGIC ON INSERTING TO THE LISTCONTROL  
-    WxListCtrl1->DeleteAllItems();
-    WxListCtrl1->InsertItem(0,WxEdit1->GetValue());
-    WxListCtrl1->SetItem(0,1,WxEdit2->GetValue());
-    WxListCtrl1->InsertItem(1,mystring);
-    WxListCtrl1->SetItem(1,1,thestring);
-    
-    //WxListCtrl1->SetItem(0,0,WxEdit2->GetValue());
-    
-    
-    
+	WxListCtrl1->DeleteAllItems();
+	string name = string(WxEdit1->GetValue().mb_str());
+	int id = wxAtoi(WxEdit2->GetValue());
+	updateTree(id,name);	
+    updateListBox();
+
    
 }
+
+
 
 /*
  * WxEdit1Updated
@@ -157,6 +123,40 @@ void Final_Project_GUIFrm::WxEdit1Updated(wxCommandEvent& event)
 {
 	// insert your code here
 }
+
+
+    
+void Final_Project_GUIFrm::updateTree(int id , string name){
+    myTree.insert(id,name);
+    myHash.insertItem(name,id);
+    
+
+}
+void Final_Project_GUIFrm::updateListBox(){
+    
+    vector<int> idList = myTree.getIdList();
+    vector<string> nameList = myTree.getNameList();
+    
+    
+    
+    
+    for (int i = 0 ; i < idList.size();i++){
+        
+        wxString id;
+        id<<idList[i];
+        WxListCtrl1->InsertItem(i,id);
+        
+        wxString name(nameList[i]);;
+        
+        WxListCtrl1->SetItem(i,1,name);
+        
+        
+        }
+        
+    }
+    
+
+
 
 /*
  * WxListBox1Selected
