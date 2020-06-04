@@ -1,10 +1,14 @@
 #include<bits/stdc++.h>
 #include<Linked List.h>
+#include <vector>
 using namespace std;
 
 class Hash{
     int tableSize=20;
     linked_list l[20];
+    linked_list all;
+    int all_counter = 0;
+    vector
 public:
     Hash(){
         }
@@ -18,6 +22,8 @@ public:
     void insertItem(string x, int id){
         l[hashFunction(x)].add_node(x,id);
         l[hashFunction(x)].sort();
+        all[all_counter].add_node(x,id);
+        all[all_counter].sort();
         }
     void results(){
         for(int i=0;i<tableSize;i++){
