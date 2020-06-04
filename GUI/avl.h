@@ -225,9 +225,11 @@ vector<string> nameList;
 
 void insert(int number, string name){
     root = insertP(root, number, name);
+    nameList.clear();
+    idList.clear();
+    updateVectorInOrder();
     
-    nameList.push_back(name);
-    idList.push_back(number);
+
 }
 
 void printPreOrder(){
