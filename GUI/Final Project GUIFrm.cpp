@@ -223,15 +223,32 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
 {
     int id;
     string name;
-	if(WxEdit1->IsEmpty()){
-         id = wxAtoi(WxEdit2->GetValue());
-         name = searchById(id);
-        updateListBoxSearch(id,name);
+    
+    if(!WxEdit1->IsEmpty() && !WxEdit2->IsEmpty()){
+        WxListCtrl1->DeleteAllItems();
+        updateListBox();
         }
+    else if (WxEdit1->IsEmpty() && WxEdit2->IsEmpty()){
+        WxListCtrl1 ->DeleteAllItems();
+        updateListBox();
+        }    
         
     else{
-        name = string(WxEdit1->GetValue().mb_str());
-        id = searchByName(name);
-        updateListBoxSearch(id,name);
+            if(WxEdit1->IsEmpty()){
+                id = wxAtoi(WxEdit2->GetValue());
+                name = searchById(id);
+                updateListBoxSearch(id,name);
+                }
+            else if(WxEdit2->IsEmpty()){
+                name = string(WxEdit1->GetValue().mb_str());
+                id = searchByName(name);
+                updateListBoxSearch(id,name);
+                }    
+        }    
+    
+	
+        
+ 
+        
 }
-}
+
