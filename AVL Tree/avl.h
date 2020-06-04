@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class AVLTree{
@@ -14,6 +15,7 @@ class AVLTree{
     
 private:
 Node* root;
+vector<int> idList;
 
 int getHeight(Node *node){
     if(node == NULL) return 0;
@@ -99,7 +101,6 @@ Node* insertP(Node* node, int number, string name){
         node = leftRotate(node);
     }
     
-    
     return node;
 }
 
@@ -117,6 +118,14 @@ void printInOrderP(Node* node){
         printInOrderP(node -> left);
         cout << "Name: " << node -> name  << "\t" << "Number: " << node -> number << endl;
         printInOrderP(node -> right);
+    }
+}
+
+void getIDListP(Node* node){
+    if(node != NULL){
+        getIDListP(node -> left);
+        idList.push_back(node -> number);
+        getIDListP(node -> right);
     }
 }
 
@@ -209,6 +218,7 @@ Node* searchP(Node* node, int number){
     }
 }
 
+
 public:
 AVLTree(){
     root = NULL;
@@ -228,6 +238,13 @@ void printInOrder(){
 
 void remove(int number){
     root = removeP(root, number);
+}
+
+vector<int> getIDList(){
+    idList.clear();
+    getIDListP(root);
+    return idList;
+    
 }
 
 string search(int number){
