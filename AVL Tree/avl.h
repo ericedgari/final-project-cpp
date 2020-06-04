@@ -17,6 +17,7 @@ private:
 Node* root;
 vector<int> idList;
 
+
 int getHeight(Node *node){
     if(node == NULL) return 0;
     return node -> height;
@@ -117,16 +118,13 @@ void printInOrderP(Node* node){
     if(node != NULL){
         printInOrderP(node -> left);
         cout << "Name: " << node -> name  << "\t" << "Number: " << node -> number << endl;
+        nameList.push_back(node->name);
+        idList.push_back(node->name);
         printInOrderP(node -> right);
     }
 }
 
-void getIDListP(Node* node){
-    if(node != NULL){
-        getIDListP(node -> left);
-        idList.push_back(node -> number);
-        getIDListP(node -> right);
-    }
+
 }
 
 Node* getMin(Node* node){
