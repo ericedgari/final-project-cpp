@@ -16,7 +16,7 @@ class AVLTree{
 private:
 Node* root;
 vector<int> idList;
-vector<string> nameList;
+
 
 int getHeight(Node *node){
     if(node == NULL) return 0;
@@ -102,7 +102,6 @@ Node* insertP(Node* node, int number, string name){
         node = leftRotate(node);
     }
     
-    
     return node;
 }
 
@@ -125,12 +124,7 @@ void printInOrderP(Node* node){
     }
 }
 
-vector getNameList(){
-    return nameList;
-}
 
-vector getIdlist(){
-    return idList;
 }
 
 Node* getMin(Node* node){
@@ -222,6 +216,7 @@ Node* searchP(Node* node, int number){
     }
 }
 
+
 public:
 AVLTree(){
     root = NULL;
@@ -241,6 +236,13 @@ void printInOrder(){
 
 void remove(int number){
     root = removeP(root, number);
+}
+
+vector<int> getIDList(){
+    idList.clear();
+    getIDListP(root);
+    return idList;
+    
 }
 
 string search(int number){
