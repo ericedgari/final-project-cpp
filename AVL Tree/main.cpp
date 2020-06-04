@@ -96,7 +96,7 @@ int main(){
                 break;
             
             case 7:
-                myHash.results();
+                myHash.vector_print(myHash.sortName());
                 break;
             case 8: 
                     exit(0);
