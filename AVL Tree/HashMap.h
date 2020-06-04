@@ -17,22 +17,22 @@ public:
     }    
     void insertItem(string x, int id){
         l[hashFunction(x)].add_node(x,id);
+        l[hashFunction(x)].sort();
         }
     void results(){
         for(int i=0;i<tableSize;i++){
-            cout<<i+1<<". ";            l[i].display(l[i].get_head());
-            cout<<endl;
+            if(l[i].get_head() != NULL){ 
+                l[i].display(l[i].get_head());
+                cout<<endl;}
             }
         }
     void delete_string(string x){
         if(l[hashFunction(x)].search(x) == -1){
             cout << "Name not found" << endl;
         }
-        else{
-            
+        else{  
         l[hashFunction(x)].delete_node(x);}
     }
-    
     int searchName(string x){
         int index = hashFunction(x);
         int result = l[index].search(x);

@@ -15,12 +15,10 @@ public:
     linked_list(){
         head = NULL;
         tail = NULL;
-        }
-        
+        }   
     Node* get_head(){
         return head;
     }
-    
     void add_node(string x,int id){
         Node *temp = new Node;
         temp->data = x;
@@ -61,17 +59,14 @@ public:
                     previous->next=current->next;
                 }
             }
-        
-    }
-        
+    }        
     void display(Node *head){
         Node* temp = new Node;
         temp = head;
         while(temp != NULL){
             cout<<temp->data<<" " << temp -> id << " ";
             temp = temp->next;}
-        }
-    
+        }    
     int search(string x){
         Node* temp = new Node;
         temp = head;
@@ -83,15 +78,16 @@ public:
     }
     void swap(Node *a, Node *b){
         string temp = a->data;
+        int temp2 = a->id;
         a->data = b->data;
         b->data = temp;
-        
+        a->id = b->id;
+        b->id = temp2;
     }
     void sort(){
         Node *current = head;
         Node *tempNode = new Node;
         string temp;
-    
         if(head == NULL){
             return;
         }
@@ -105,16 +101,7 @@ public:
                         tempNode =  tempNode->next;
                 }
                         current =  current->next;
-            }
-                        
-        }
-                        
-                        
-                        
-    }
-             
+            }                   
+        }                    
+    }    
 };
-    
-    
-    
-    
