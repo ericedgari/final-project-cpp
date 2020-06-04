@@ -1,3 +1,4 @@
+#include <vector>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -84,6 +85,16 @@ public:
         a->id = b->id;
         b->id = temp2;
     }
+    vector<string> store(Node *head){
+        vector<string> words = {};
+        Node* temp = new Node;
+        temp = head;
+        while(temp != NULL){
+            words.push_back(temp->data);
+            temp = temp->next;
+            }
+        return words;
+        } 
     void sort(){
         Node *current = head;
         Node *tempNode = new Node;
