@@ -33,6 +33,9 @@ BEGIN_EVENT_TABLE(Final_Project_GUIFrm,wxFrame)
 	
 	EVT_CLOSE(Final_Project_GUIFrm::OnClose)
 	EVT_ACTIVATE(Final_Project_GUIFrm::Final_Project_GUIFrmActivate)
+	EVT_BUTTON(ID_WXBUTTON1,Final_Project_GUIFrm::WxButton1Click)
+	
+
 	EVT_BUTTON(ID_ADD,Final_Project_GUIFrm::TotalClick)
 	
 	EVT_TEXT(ID_WXEDIT1,Final_Project_GUIFrm::WxEdit1Updated)
@@ -62,6 +65,8 @@ void Final_Project_GUIFrm::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
+	WxButton1 = new wxButton(this, ID_WXBUTTON1, _("Search"), wxPoint(230, 80), wxSize(75, 25), 0, wxDefaultValidator, _("WxButton1"));
+
 	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("ID"), wxPoint(25, 84), wxDefaultSize, 0, _("WxStaticText3"));
 
 	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Name"), wxPoint(17, 48), wxDefaultSize, 0, _("WxStaticText2"));
@@ -72,7 +77,7 @@ void Final_Project_GUIFrm::CreateGUIControls()
 	WxListCtrl1->InsertColumn(0, _("ID"), wxLIST_FORMAT_LEFT, 100);
 	WxListCtrl1->InsertColumn(1, _("Name"), wxLIST_FORMAT_LEFT, 100);
 
-	Add = new wxButton(this, ID_ADD, _("Add"), wxPoint(236, 50), wxSize(75, 25), 0, wxDefaultValidator, _("Add"));
+	Add = new wxButton(this, ID_ADD, _("Add"), wxPoint(231, 40), wxSize(75, 25), 0, wxDefaultValidator, _("Add"));
 
 	WxEdit2 = new wxTextCtrl(this, ID_WXEDIT2, _("6"), wxPoint(75, 82), wxSize(121, 19), 0, wxDefaultValidator, _("WxEdit2"));
 
@@ -157,16 +162,93 @@ void Final_Project_GUIFrm::updateListBox(){
     }
     
 
+string Final_Project_GUIFrm::searchById(int id ){
+    vector<int> idList = myTree.getIdList();
+    vector<string> nameList = myTree.getNameList();
+    string name;
+    if(myTree.search(id) != "NAN"){
+                    for (int i =0 ;i<idList.size();i++){
+                        if(idList[i]==id){
+                            name = nameList[i];
+                            }
+                        }
+                    return name ;
+                    //cout << "The name at the specified ID is " << myTree.search(number) << endl;
+                }
+                else{
+                    name = "No Result!!!";
+                    return name;
+                    }
+    }
+    
+int Final_Project_GUIFrm::searchByName(string name ){
+    vector<int> idList = myTree.getIdList();
+    vector<string> nameList = myTree.getNameList();
+    int id;
+    if(myHash.searchName(name) == -1){
+                    id = -1;
+                    return id;
+                    //cout << "Specified name does not exist!" << endl;
+                }
+                else{
+                    id = myHash.searchName(name);
+                    return id;
+                    //cout << "The ID of the specified name is " << myHash.searchName(name) << endl;
+                }
+    }
+    
+
+void Final_Project_GUIFrm::updateListBoxSearch(int id, string name){
+        WxListCtrl1->DeleteAllItems();
+        wxString theId;
+        if(id == -1){
+            theId = "No Result!!!";
+            }
+        else{
+            theId<<id;
+            }
+        WxListCtrl1->InsertItem(0,theId);
+        
+        wxString theName(name);
+        WxListCtrl1->SetItem(0,1,theName);
+        
+        
+    }
 
 
 /*
- * WxListBox1Selected
+ * WxButton1Click
  */
-void Final_Project_GUIFrm::WxListBox1Selected(wxCommandEvent& event)
+void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
 {
-	// insert your code here
+    int id;
+    string name;
+    
+    if(!WxEdit1->IsEmpty() && !WxEdit2->IsEmpty()){
+        WxListCtrl1->DeleteAllItems();
+        updateListBox();
+        }
+    else if (WxEdit1->IsEmpty() && WxEdit2->IsEmpty()){
+        WxListCtrl1 ->DeleteAllItems();
+        updateListBox();
+        }    
+        
+    else{
+            if(WxEdit1->IsEmpty()){
+                id = wxAtoi(WxEdit2->GetValue());
+                name = searchById(id);
+                updateListBoxSearch(id,name);
+                }
+            else if(WxEdit2->IsEmpty()){
+                name = string(WxEdit1->GetValue().mb_str());
+                id = searchByName(name);
+                updateListBoxSearch(id,name);
+                }    
+        }    
+    
+	
+        
+ 
+        
 }
-
-
-
 
