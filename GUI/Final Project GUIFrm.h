@@ -57,13 +57,17 @@ class Final_Project_GUIFrm : public wxFrame
 		void createDatabase();
 		void updateTree(int id , string name);
 		void updateListBox();
-		
+		string searchById(int id);
+		int searchByName(string name);
+		void updateListBoxSearch(int id , string name);
+		void WxButton1Click(wxCommandEvent& event);
 		
 	private:
 		//Do not add custom control declarations between
 		//GUI Control Declaration Start and GUI Control Declaration End.
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
+		wxButton *WxButton1;
 		wxStaticText *WxStaticText3;
 		wxStaticText *WxStaticText2;
 		wxStaticText *WxStaticText1;
@@ -81,6 +85,7 @@ class Final_Project_GUIFrm : public wxFrame
 		enum
 		{
 			////GUI Enum Control ID Start
+			ID_WXBUTTON1 = 1011,
 			ID_WXSTATICTEXT3 = 1010,
 			ID_WXSTATICTEXT2 = 1009,
 			ID_WXSTATICTEXT1 = 1008,
