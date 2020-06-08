@@ -8,7 +8,7 @@
 ///
 ///------------------------------------------------------------------
 
-
+#include "Messages.h"
 
 #include "Final Project GUIFrm.h"
 #include<iostream>
@@ -33,6 +33,7 @@ BEGIN_EVENT_TABLE(Final_Project_GUIFrm,wxFrame)
 	
 	EVT_CLOSE(Final_Project_GUIFrm::OnClose)
 	EVT_ACTIVATE(Final_Project_GUIFrm::Final_Project_GUIFrmActivate)
+	EVT_BUTTON(ID_WXBUTTON2,Final_Project_GUIFrm::WxButton2Click)
 	EVT_BUTTON(ID_WXBUTTON1,Final_Project_GUIFrm::WxButton1Click)
 	
 
@@ -65,6 +66,8 @@ void Final_Project_GUIFrm::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
+	WxButton2 = new wxButton(this, ID_WXBUTTON2, _("Refresh"), wxPoint(321, 80), wxSize(75, 25), 0, wxDefaultValidator, _("WxButton2"));
+
 	WxButton1 = new wxButton(this, ID_WXBUTTON1, _("Search"), wxPoint(230, 80), wxSize(75, 25), 0, wxDefaultValidator, _("WxButton1"));
 
 	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("ID"), wxPoint(25, 84), wxDefaultSize, 0, _("WxStaticText3"));
@@ -73,7 +76,7 @@ void Final_Project_GUIFrm::CreateGUIControls()
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("ID"), wxPoint(-24, 104), wxDefaultSize, 0, _("WxStaticText1"));
 
-	WxListCtrl1 = new wxListCtrl(this, ID_WXLISTCTRL1, wxPoint(44, 134), wxSize(250, 150), wxLC_REPORT, wxDefaultValidator, _("WxListCtrl1"));
+	WxListCtrl1 = new wxListCtrl(this, ID_WXLISTCTRL1, wxPoint(76, 124), wxSize(250, 150), wxLC_REPORT, wxDefaultValidator, _("WxListCtrl1"));
 	WxListCtrl1->InsertColumn(0, _("ID"), wxLIST_FORMAT_LEFT, 100);
 	WxListCtrl1->InsertColumn(1, _("Name"), wxLIST_FORMAT_LEFT, 100);
 
@@ -85,7 +88,7 @@ void Final_Project_GUIFrm::CreateGUIControls()
 
 	SetTitle(_("Final Project GUI"));
 	SetIcon(Final_Project_GUIFrm_frmNewForm_XPM);
-	SetSize(8,8,501,396);
+	SetSize(5,8,504,396);
 	Center();
 	
 	////GUI Items Creation End
@@ -101,7 +104,7 @@ void Final_Project_GUIFrm::OnClose(wxCloseEvent& event)
  */
 void Final_Project_GUIFrm::Final_Project_GUIFrmActivate(wxActivateEvent& event)
 {
-    
+
 }
 
 /*
@@ -219,16 +222,26 @@ void Final_Project_GUIFrm::updateListBoxSearch(int id, string name){
 /*
  * WxButton1Click
  */
+ 
+
+void Final_Project_GUIFrm::errorMessage(string message){
+    wxString msg(message); 
+    wxMessageBox(msg, _T("Error"),wxOK | wxICON_ERROR, this);
+    }
+ 
 void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
 {
     int id;
     string name;
     
     if(!WxEdit1->IsEmpty() && !WxEdit2->IsEmpty()){
+        errorMessage("Please enter ID or Name");
+
         WxListCtrl1->DeleteAllItems();
         updateListBox();
         }
     else if (WxEdit1->IsEmpty() && WxEdit2->IsEmpty()){
+        errorMessage("Please enter ID or Name");
         WxListCtrl1 ->DeleteAllItems();
         updateListBox();
         }    
@@ -237,12 +250,24 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
             if(WxEdit1->IsEmpty()){
                 id = wxAtoi(WxEdit2->GetValue());
                 name = searchById(id);
-                updateListBoxSearch(id,name);
+                if(name == "No Result!!!"){
+                    errorMessage("Name does not exist");
+                    }
+                else{
+                    updateListBoxSearch(id,name);    
+                    }
+                
                 }
             else if(WxEdit2->IsEmpty()){
                 name = string(WxEdit1->GetValue().mb_str());
                 id = searchByName(name);
-                updateListBoxSearch(id,name);
+                if(id == -1){
+                    errorMessage("ID does not exist");
+                    }
+                else{
+                     updateListBoxSearch(id,name);
+                    }
+               
                 }    
         }    
     
@@ -252,3 +277,12 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
         
 }
 
+
+/*
+ * WxButton2Click
+ */
+void Final_Project_GUIFrm::WxButton2Click(wxCommandEvent& event)
+{
+	WxListCtrl1 ->DeleteAllItems();
+    updateListBox();
+}
