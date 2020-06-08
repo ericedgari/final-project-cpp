@@ -5,7 +5,7 @@ object frmNewForm: TfrmNewForm
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Final Project GUI'
   ClientHeight = 357
-  ClientWidth = 485
+  ClientWidth = 488
   Color = clAppWorkSpace
   OldCreateOrder = True
   PopupMenu = DesignerPopup.Owner
@@ -278,8 +278,8 @@ object frmNewForm: TfrmNewForm
     Wx_Floating_Y_Pos = 0
   end
   object WxListCtrl1: TWxListCtrl
-    Left = 44
-    Top = 134
+    Left = 62
+    Top = 125
     Width = 250
     Height = 150
     Columns = <
@@ -289,11 +289,11 @@ object frmNewForm: TfrmNewForm
       end
       item
         Caption = 'Name'
-        Width = 100
+        Width = 140
       end>
     TabOrder = 3
     ViewStyle = vsReport
-    EVT_LIST_BEGIN_DRAG = 'WxListCtrl1BeginDrag'
+    EVT_LIST_ITEM_FOCUSED = 'errorMessage'
     Wx_BGColor = clBlack
     Wx_Class = 'wxListCtrl'
     Wx_ControlOrientation = wxControlVertical
@@ -442,6 +442,82 @@ object frmNewForm: TfrmNewForm
     Wx_IDValue = 1011
     Wx_PaneCaption = 'WxButton1'
     Wx_PaneName = 'WxButton1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object WxButton2: TWxButton
+    Left = 321
+    Top = 80
+    Width = 75
+    Height = 25
+    Caption = 'Refresh'
+    TabOrder = 8
+    EVT_BUTTON = 'WxButton2Click'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_WXBUTTON2'
+    Wx_IDValue = 1012
+    Wx_PaneCaption = 'WxButton2'
+    Wx_PaneName = 'WxButton2_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object WxButton3: TWxButton
+    Left = 321
+    Top = 42
+    Width = 75
+    Height = 25
+    Caption = 'Delete'
+    TabOrder = 9
+    EVT_BUTTON = 'WxButton3Click'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_WXBUTTON3'
+    Wx_IDValue = 1013
+    Wx_PaneCaption = 'WxButton3'
+    Wx_PaneName = 'WxButton3_Pane'
     Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
     Wx_Aui_Dockable_Direction = []
     Wx_Aui_Pane_Style = []

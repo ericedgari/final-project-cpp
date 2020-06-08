@@ -9,6 +9,7 @@
 ///------------------------------------------------------------------
 
 
+
 #include "HashMap.h"
 #include "avl.h"
 #ifndef __FINAL_PROJECT_GUIFRM_H__
@@ -61,12 +62,20 @@ class Final_Project_GUIFrm : public wxFrame
 		int searchByName(string name);
 		void updateListBoxSearch(int id , string name);
 		void WxButton1Click(wxCommandEvent& event);
+		void errorMessage(string message);
+		void dialogMessage(string message);
+		void questionMessage(string message);
+		void WxButton2Click(wxCommandEvent& event);
+		void WxListCtrl1BeginDrag(wxListEvent& event);
+		void WxButton3Click(wxCommandEvent& event);
 		
 	private:
 		//Do not add custom control declarations between
 		//GUI Control Declaration Start and GUI Control Declaration End.
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
+		wxButton *WxButton3;
+		wxButton *WxButton2;
 		wxButton *WxButton1;
 		wxStaticText *WxStaticText3;
 		wxStaticText *WxStaticText2;
@@ -85,6 +94,8 @@ class Final_Project_GUIFrm : public wxFrame
 		enum
 		{
 			////GUI Enum Control ID Start
+			ID_WXBUTTON3 = 1013,
+			ID_WXBUTTON2 = 1012,
 			ID_WXBUTTON1 = 1011,
 			ID_WXSTATICTEXT3 = 1010,
 			ID_WXSTATICTEXT2 = 1009,
@@ -98,6 +109,7 @@ class Final_Project_GUIFrm : public wxFrame
 		};
 		
 	private:
+        
 		void OnClose(wxCloseEvent& event);
 		void CreateGUIControls();
 };
