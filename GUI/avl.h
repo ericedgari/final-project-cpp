@@ -228,9 +228,13 @@ void insert(int number, string name){
     nameList.clear();
     idList.clear();
     updateVectorInOrder();
-    
-
 }
+
+void updateVector(){
+    nameList.clear();
+    idList.clear();
+    updateVectorInOrder();
+    }
 
 void printPreOrder(){
     printPreOrderP(root);
