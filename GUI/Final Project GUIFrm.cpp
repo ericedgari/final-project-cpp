@@ -120,6 +120,14 @@ void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
 	WxListCtrl1->DeleteAllItems();
 	string name = string(WxEdit1->GetValue().mb_str());
 	int id = wxAtoi(WxEdit2->GetValue());
+	if(id <0){
+                    errorMessage("ID cannot be a negative number");
+          
+                    }
+
+    else if (id>999999999){
+                    errorMessage("ID cannot be longer than 9 integers");
+                    }
 	updateTree(id,name);	
     updateListBox();
 
@@ -275,6 +283,7 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
             else if(WxEdit2->IsEmpty()){
                 name = string(WxEdit1->GetValue().mb_str());
                 id = searchByName(name);
+                
                 if(id == -1){
                     errorMessage("ID does not exist");
                     }
