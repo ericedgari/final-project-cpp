@@ -117,6 +117,10 @@ void Final_Project_GUIFrm::Final_Project_GUIFrmActivate(wxActivateEvent& event)
 void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
 {
 	// insert your code here
+	
+	// this is the function to add id and name to the list , 
+	//the procedure =  clear the items in the list box , get name and id on the text entry 
+    // if the id is not a negative and not more than 9 interger , the AVL tree and hashlist will be updated with the name and id 
 	WxListCtrl1->DeleteAllItems();
 	string name = string(WxEdit1->GetValue().mb_str());
 	int id = wxAtoi(WxEdit2->GetValue());
@@ -128,9 +132,11 @@ void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
     else if (id>999999999){
                     errorMessage("ID cannot be longer than 9 integers");
                     }
+    else{
+                    
 	updateTree(id,name);	
     updateListBox();
-
+}
    
 }
 
@@ -147,13 +153,17 @@ void Final_Project_GUIFrm::WxEdit1Updated(wxCommandEvent& event)
 
     
 void Final_Project_GUIFrm::updateTree(int id , string name){
+    
+    // this is the function to insert the name and id to the tree and the hashlist
     myTree.insert(id,name);
     myHash.insertItem(name,id);
-    
-    
 
 }
 void Final_Project_GUIFrm::updateListBox(){
+    
+    // this is the function to update list box 
+    // it uses the vector container to take the data that the tree and hash list provided 
+    // after getting the data from the tree and hash , it will be inserted to the listbox
     
     vector<int> idList = myTree.getIdList();
     vector<string> nameList = myTree.getNameList();
@@ -178,6 +188,10 @@ void Final_Project_GUIFrm::updateListBox(){
     
 
 string Final_Project_GUIFrm::searchById(int id ){
+    // this is the function for searching the data by id 
+    // takes a vector and use a simple search algorithm 
+    // if the vector contained the id , it will get the same index in the namelist
+    // if not it will return a no result string
     vector<int> idList = myTree.getIdList();
     vector<string> nameList = myTree.getNameList();
     string name;
@@ -188,7 +202,7 @@ string Final_Project_GUIFrm::searchById(int id ){
                             }
                         }
                     return name ;
-                    //cout << "The name at the specified ID is " << myTree.search(number) << endl;
+                    
                 }
                 else{
                     name = "No Result!!!";
@@ -197,23 +211,28 @@ string Final_Project_GUIFrm::searchById(int id ){
     }
     
 int Final_Project_GUIFrm::searchByName(string name ){
+        // this is the function for searching the data by name 
+    // takes a vector and use a simple search algorithm 
+    // if the vector contained the name , it will get the same index in the idlist
+    // if not it will return a -1 value
     vector<int> idList = myTree.getIdList();
     vector<string> nameList = myTree.getNameList();
     int id;
     if(myHash.searchName(name) == -1){
                     id = -1;
                     return id;
-                    //cout << "Specified name does not exist!" << endl;
+                    
                 }
                 else{
                     id = myHash.searchName(name);
                     return id;
-                    //cout << "The ID of the specified name is " << myHash.searchName(name) << endl;
-                }
+                                  }
     }
     
 
 void Final_Project_GUIFrm::updateListBoxSearch(int id, string name){
+    // this function works after the search algorithm run
+    // it will update the listbox with search item
         WxListCtrl1->DeleteAllItems();
         wxString theId;
         if(id == -1){
@@ -237,22 +256,25 @@ void Final_Project_GUIFrm::updateListBoxSearch(int id, string name){
  
 
 void Final_Project_GUIFrm::errorMessage(string message){
+    // a function to create error message by just typing the string
     wxString msg(message); 
     wxMessageBox(msg, _T("Error"),wxOK | wxICON_ERROR, this);
     }
     
 void Final_Project_GUIFrm::dialogMessage(string message){
+    // a function to create dialog message by just typing the string
     wxString msg(message); 
     wxMessageBox(msg, _T("Delete"),wxOK, this);
     }
 
-void Final_Project_GUIFrm::questionMessage(string message){
-    wxString msg(message); 
-    wxMessageBox(msg, _T("Delete"),wxOK | wxICON_QUESTION, this);
-    }    
  
 void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
 {
+    // this function works when the search button is clicked 
+    // you need to enter only the id or only the name 
+    // if not it will generate an error message 
+    // if all condition fulfilled it will , run the updatelistbox search function
+    // and the search function to generate the result to the listbox
     int id;
     string name;
     
@@ -302,6 +324,8 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
  */
 void Final_Project_GUIFrm::WxButton2Click(wxCommandEvent& event)
 {
+    // this is a function update the list box after you search 
+    // to make the listbox display the default result 
 	WxListCtrl1 ->DeleteAllItems();
     updateListBox();
 }
@@ -313,6 +337,13 @@ void Final_Project_GUIFrm::WxButton2Click(wxCommandEvent& event)
  */
 void Final_Project_GUIFrm::WxButton3Click(wxCommandEvent& event)
 {
+       // this is the function for the delete button 
+       // it only accepts ID only , if not it will generate error message 
+       // if condition fulfilled it will , search the data in the tree and hash 
+       // and delete it 
+       // after that it will updatethevector that the GUI using 
+       // to provide the new result 
+       // and at last it will generate a messagedialog that the id is succesfully deleted
        
 	// making delete function 
 	if(!WxEdit2->IsEmpty() && WxEdit1->IsEmpty()){
