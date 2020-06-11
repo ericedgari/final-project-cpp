@@ -76,7 +76,7 @@ public:
         return -1;
     }
     vector<string> store(Node *head){
-        vector<string> words = {};
+        vector<string> words;
         Node* temp = new Node;
         temp = head;
         while(temp != NULL){
@@ -86,7 +86,7 @@ public:
         return words;
         }
     vector<string> searchAllName(string x){
-        vector<string> search_name = {};
+        vector<string> search_name;
         Node* temp = new Node;
         temp = head;
         while(temp != NULL){
@@ -96,7 +96,7 @@ public:
         return search_name;
         }
     vector<int> searchAllID(string x){
-        vector<int> search_id = {};
+        vector<int> search_id;
         Node* temp = new Node;
         temp = head;
         while(temp != NULL){
