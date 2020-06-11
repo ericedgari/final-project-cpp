@@ -8,6 +8,8 @@ class Hash{
     linked_list l[20];
     linked_list all;
     vector<string> nameList;
+    vector<string> searchNameList;
+    vector<int> searchIDList;
 public:
     Hash(){
         }
@@ -43,6 +45,14 @@ public:
         int result = l[index].search(x);
         return result;
     }
+    vector<string> searchNameVector(string x){
+        searchNameList = l[hashFunction(x)].searchAllName(x);
+        return searchNameList;
+    }
+    vector<int> searchIDVector(string x){
+        searchIDList = l[hashFunction(x)].searchAllID(x);
+        return searchIDList;
+    }
     vector<string> getNameList(){
         nameList = all.store(all.get_head());
         return nameList;
@@ -51,5 +61,10 @@ public:
         for(int i=0; i<a.size();i++){
             cout << a.at(i)<<endl;
         }
-    }        
+    }
+    void vector_print_int(vector<int> a){
+        for(int i=0; i<a.size();i++){
+            cout << a.at(i)<<endl;
+        }
+    }
 };
