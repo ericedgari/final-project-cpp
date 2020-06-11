@@ -68,6 +68,7 @@ class Final_Project_GUIFrm : public wxFrame
 		void WxButton2Click(wxCommandEvent& event);
 		void WxListCtrl1BeginDrag(wxListEvent& event);
 		void WxButton3Click(wxCommandEvent& event);
+		bool checkId(int id );
 		
 	private:
 		//Do not add custom control declarations between
