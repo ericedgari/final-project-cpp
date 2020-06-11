@@ -76,7 +76,7 @@ public:
         return -1;
     }
     vector<string> store(Node *head){
-        vector<string> words = {};
+        vector<string> words;
         Node* temp = new Node;
         temp = head;
         while(temp != NULL){
@@ -84,7 +84,27 @@ public:
             temp = temp->next;
             }
         return words;
-        } 
+        }
+    vector<string> searchAllName(string x){
+        vector<string> search_name;
+        Node* temp = new Node;
+        temp = head;
+        while(temp != NULL){
+            if(temp -> data == x) search_name.push_back(temp->data);
+            temp = temp -> next;
+        }
+        return search_name;
+        }
+    vector<int> searchAllID(string x){
+        vector<int> search_id;
+        Node* temp = new Node;
+        temp = head;
+        while(temp != NULL){
+            if(temp -> data == x) search_id.push_back(temp->id);
+            temp = temp -> next;
+        }
+        return search_id;
+        }
     void swap(Node *a, Node *b){
         string temp = a->data;
         int temp2 = a->id;
@@ -97,7 +117,6 @@ public:
         Node *current = head;
         Node *tempNode = new Node;
         string temp;
-    
         if(head == NULL){
             return;
         }
