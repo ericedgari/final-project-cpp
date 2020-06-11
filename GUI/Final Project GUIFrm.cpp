@@ -129,13 +129,18 @@ void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
 	string name = string(WxEdit1->GetValue().mb_str());
 	int id = wxAtoi(WxEdit2->GetValue());
 	if(id <=0){
-                    errorMessage("ID cannot be a negative number");
+                    errorMessage("ID cannot be a less than 0 ");
                     
                     }
 
     else if (id>999999999){
                     errorMessage("ID cannot be longer than 9 integers");
                     }
+    
+    else if (!checkId(id)){
+        errorMessage("There is already a name with that id number");
+        }
+                    
     else{
                     
 	updateTree(id,name);	
@@ -145,6 +150,17 @@ updateListBox();
    
 }
 
+bool Final_Project_GUIFrm::checkId(int id ){
+    vector<int> idList = myTree.getIdList();
+    
+    for(int i =0 ; i<idList.size();i++ ){
+        if(idList[i]==id ){
+            return false;
+            }
+        }
+        return true;
+    
+    }
 
 
 /*
@@ -283,6 +299,7 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
     int id;
     string name;
     
+    
     if(!WxEdit1->IsEmpty() && !WxEdit2->IsEmpty()){
         errorMessage("Please enter ID or Name");
 
@@ -299,8 +316,11 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
             if(WxEdit1->IsEmpty()){
                 id = wxAtoi(WxEdit2->GetValue());
                 name = searchById(id);
+
                 if(name == "No Result!!!"){
-                    errorMessage("Name does not exist");
+                    errorMessage("ID does not exist");
+                    WxListCtrl1 ->DeleteAllItems();
+                    updateListBox(); 
                     }
                 else{
                     updateListBoxSearch(id,name);    
@@ -310,12 +330,28 @@ void Final_Project_GUIFrm::WxButton1Click(wxCommandEvent& event)
             else if(WxEdit2->IsEmpty()){
                 name = string(WxEdit1->GetValue().mb_str());
                 id = searchByName(name);
+                vector<string> nameList = myHash.searchNameVector(name);
+                vector<int> idList = myHash.searchIDVector(name);
                 
-                if(id == -1){
-                    errorMessage("ID does not exist");
+                if(nameList.size()==0){
+                    errorMessage("Name does not exist");
+                    WxListCtrl1 ->DeleteAllItems();
+                    updateListBox(); 
                     }
                 else{
-                     updateListBoxSearch(id,name);
+                      WxListCtrl1 ->DeleteAllItems();
+                     for (int i = 0 ; i < idList.size();i++){
+        
+        wxString id;
+        id<<idList[i];
+        WxListCtrl1->InsertItem(i,id);
+        
+        wxString name(nameList[i]);;
+        
+        WxListCtrl1->SetItem(i,1,name);
+        
+        
+        }
                     }
                
                 }    

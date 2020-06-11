@@ -165,9 +165,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=Messages.cpp
+FileName=HashMap.h
 CompileCpp=1
-Folder=
+Folder=Final Project GUI
 Compile=1
 Link=1
 Priority=1000
@@ -175,8 +175,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=Messages.h
-Folder=
+FileName=Linked List.h
+Folder=Final Project GUI
 Compile=1
 Link=1
 Priority=1000
