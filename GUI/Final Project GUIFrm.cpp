@@ -38,7 +38,6 @@ BEGIN_EVENT_TABLE(Final_Project_GUIFrm,wxFrame)
 	EVT_BUTTON(ID_WXBUTTON2,Final_Project_GUIFrm::WxButton2Click)
 	EVT_BUTTON(ID_WXBUTTON1,Final_Project_GUIFrm::WxButton1Click)
 	
-
 	EVT_BUTTON(ID_ADD,Final_Project_GUIFrm::TotalClick)
 	
 	EVT_TEXT(ID_WXEDIT1,Final_Project_GUIFrm::WxEdit1Updated)
@@ -74,21 +73,26 @@ void Final_Project_GUIFrm::CreateGUIControls()
 
 	WxButton1 = new wxButton(this, ID_WXBUTTON1, _("Search"), wxPoint(230, 80), wxSize(75, 25), 0, wxDefaultValidator, _("WxButton1"));
 
-	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("ID"), wxPoint(25, 84), wxDefaultSize, 0, _("WxStaticText3"));
+	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("ID"), wxPoint(18, 73), wxDefaultSize, 0, _("WxStaticText3"));
+	WxStaticText3->SetFont(wxFont(16, wxSWISS, wxNORMAL, wxBOLD, false, _("Segoe UI Semibold")));
 
-	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Name"), wxPoint(17, 48), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Name"), wxPoint(7, 37), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2->SetFont(wxFont(14, wxSWISS, wxNORMAL, wxBOLD, false, _("Segoe UI Semibold")));
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("ID"), wxPoint(-24, 104), wxDefaultSize, 0, _("WxStaticText1"));
 
 	WxListCtrl1 = new wxListCtrl(this, ID_WXLISTCTRL1, wxPoint(62, 125), wxSize(250, 150), wxLC_REPORT, wxDefaultValidator, _("WxListCtrl1"));
 	WxListCtrl1->InsertColumn(0, _("ID"), wxLIST_FORMAT_LEFT, 100);
 	WxListCtrl1->InsertColumn(1, _("Name"), wxLIST_FORMAT_LEFT, 140);
+	WxListCtrl1->SetFont(wxFont(12, wxSWISS, wxNORMAL, wxNORMAL, false));
 
 	Add = new wxButton(this, ID_ADD, _("Add"), wxPoint(231, 40), wxSize(75, 25), 0, wxDefaultValidator, _("Add"));
 
-	WxEdit2 = new wxTextCtrl(this, ID_WXEDIT2, _("6"), wxPoint(75, 82), wxSize(121, 19), 0, wxDefaultValidator, _("WxEdit2"));
+	WxEdit2 = new wxTextCtrl(this, ID_WXEDIT2, _("11"), wxPoint(69, 74), wxSize(137, 30), 0, wxDefaultValidator, _("WxEdit2"));
+	WxEdit2->SetFont(wxFont(16, wxSWISS, wxNORMAL, wxNORMAL, false));
 
-	WxEdit1 = new wxTextCtrl(this, ID_WXEDIT1, _("Jack"), wxPoint(75, 45), wxSize(121, 19), 0, wxDefaultValidator, _("WxEdit1"));
+	WxEdit1 = new wxTextCtrl(this, ID_WXEDIT1, _("Jack"), wxPoint(70, 35), wxSize(135, 33), 0, wxDefaultValidator, _("WxEdit1"));
+	WxEdit1->SetFont(wxFont(16, wxSWISS, wxNORMAL, wxNORMAL, false));
 
 	SetTitle(_("Final Project GUI"));
 	SetIcon(Final_Project_GUIFrm_frmNewForm_XPM);
@@ -124,9 +128,9 @@ void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
 	WxListCtrl1->DeleteAllItems();
 	string name = string(WxEdit1->GetValue().mb_str());
 	int id = wxAtoi(WxEdit2->GetValue());
-	if(id <0){
+	if(id <=0){
                     errorMessage("ID cannot be a negative number");
-          
+                    
                     }
 
     else if (id>999999999){
@@ -135,8 +139,9 @@ void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
     else{
                     
 	updateTree(id,name);	
-    updateListBox();
+    
 }
+updateListBox();
    
 }
 
