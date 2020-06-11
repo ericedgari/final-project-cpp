@@ -1,3 +1,4 @@
+#include <vector>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -20,7 +21,6 @@ public:
     Node* get_head(){
         return head;
     }
-    
     void add_node(string x,int id){
         Node *temp = new Node;
         temp->data = x;
@@ -41,14 +41,11 @@ public:
             Node *previous = new Node;
             current = head;
             if(current->data == x){
-
                 head = head->next;
                 delete current;
-                
                 }
             else{
                 while(current->data != x){
-                    
                     previous = current;
                     current = current->next;
                     }
@@ -61,9 +58,7 @@ public:
                     previous->next=current->next;
                 }
             }
-        
     }
-        
     void display(Node *head){
         Node* temp = new Node;
         temp = head;
@@ -71,7 +66,6 @@ public:
             cout<<temp->data<<" " << temp -> id << " ";
             temp = temp->next;}
         }
-    
     int search(string x){
         Node* temp = new Node;
         temp = head;
@@ -81,6 +75,16 @@ public:
         }
         return -1;
     }
+    vector<string> store(Node *head){
+        vector<string> words = {};
+        Node* temp = new Node;
+        temp = head;
+        while(temp != NULL){
+            words.push_back(temp->data);
+            temp = temp->next;
+            }
+        return words;
+        } 
     void swap(Node *a, Node *b){
         string temp = a->data;
         int temp2 = a->id;
@@ -107,16 +111,7 @@ public:
                         tempNode =  tempNode->next;
                 }
                         current =  current->next;
-            }
-                        
-        }
-                        
-                        
-                        
-    }
-             
+            }               
+        }          
+    }           
 };
-    
-    
-    
-    
