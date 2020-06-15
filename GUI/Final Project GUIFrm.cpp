@@ -289,7 +289,7 @@ void Final_Project_GUIFrm::errorMessage(string message){
 void Final_Project_GUIFrm::dialogMessage(string message){
     // a function to create dialog message by just typing the string
     wxString msg(message); 
-    wxMessageBox(msg, _T("Delete"),wxOK, this);
+    wxMessageBox(msg, _T("Message"),wxOK, this);
     }
 
  
