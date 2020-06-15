@@ -140,11 +140,15 @@ void Final_Project_GUIFrm::TotalClick(wxCommandEvent& event)
     else if (!checkId(id)){
         errorMessage("There is already a name with that id number");
         }
+        
+    else if (WxEdit1->IsEmpty()){
+        errorMessage("Name cannot be empty");
+        }
                     
     else{
-                    
+       
 	updateTree(id,name);	
-    
+    dialogMessage("Add data succesful");
 }
 updateListBox();
    
