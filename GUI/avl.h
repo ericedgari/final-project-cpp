@@ -149,6 +149,7 @@ Node* getMin(Node* node){
     else getMin(node -> left);
 }
 
+// This part is taken from an external source https://www.geeksforgeeks.org/avl-tree-set-2-deletion/
 // Function to remove a node from the tree
 Node* removeP(Node* node, int number){
     if(root == NULL){
